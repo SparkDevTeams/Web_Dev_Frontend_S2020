@@ -3,6 +3,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import LoginIcon from '@material-ui/icons/ExitToApp';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import Home from '../pages/Home';
 /**
  * The Public Routes
  * These routes are being used for the drawer but one could create another array
@@ -21,7 +22,7 @@ export const publicRoutes = [
         path: '/home',
         name: 'Home',
         icon: HomeIcon,
-        component: null
+        component: Home,
     },
     {
         key: 1,
