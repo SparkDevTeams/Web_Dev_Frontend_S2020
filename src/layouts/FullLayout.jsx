@@ -10,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import {publicRoutes } from "../routes/allRoutes";
 import styled from "styled-components";
+import { Route, Switch} from "react-router-dom";
 
 
 
@@ -52,7 +53,7 @@ const FullLayout = (props) => {
                     <ListItem
                       button
                       onClick={() => switchRoutes(route.path)}
-                      key={route.name}
+                      key={route.key}
                     >
                       <ListItemIcon>
                         {<route.icon color="primary" />}
@@ -63,6 +64,11 @@ const FullLayout = (props) => {
                 </List>
               </Side>
             </Drawer>
+            <Switch>
+              {publicRoutes.map(publicRoutes => {
+                return (<Route exact  path={publicRoutes.path} key={publicRoutes.key} component={publicRoutes.component} />)
+              })}
+            </Switch>
         </div>
     )
 }
