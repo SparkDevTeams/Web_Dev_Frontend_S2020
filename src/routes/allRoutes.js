@@ -36,5 +36,12 @@ export const publicRoutes = [
         name: 'View Challenge',
         icon: InfoIcon,
         component: null
+    },
+    {
+        key: 3,
+        path: '/createChallenge',
+        name: 'Create Challenge',
+        icon: InfoIcon,
+        component: null
     }
 ]
