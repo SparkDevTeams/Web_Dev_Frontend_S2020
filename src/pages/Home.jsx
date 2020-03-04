@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
+import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
+import styled from "styled-components";
 // const Home = props => {
 
     
@@ -9,19 +10,32 @@ import TextField from '@material-ui/core/TextField';
 //     )
 // }
 
+  const StyledTextField = styled(TextField)`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  top-margin: 15px;
+  left-margin: 100px;
+`
+
+
 class Home extends React.Component {
 
+    
     componentDidMount(){
         console.log('home component logged')
     }
 
     render(){
         return (
-            <form  noValidate autoComplete="off">
-  <TextField id="standard-basic" label="Standard" />
-  <TextField id="filled-basic" label="Filled" variant="filled" />
-  <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-</form>
+            <div className="landing-page-field">
+                <div>
+                  
+                    <form noValidate autoComplete="off">
+                        <StyledTextField />
+                    </form>
+                </div>
+            </div>
         )
     }
 };
