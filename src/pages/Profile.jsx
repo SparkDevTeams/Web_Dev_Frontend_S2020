@@ -35,6 +35,9 @@ const StyledTablePagination = styled(TablePagination)`
     flex-direction: row;
     justify-content: center;
 `
+const StyledAvatar = styled(Avatar)`
+
+`
 
 function getChallenges(name, date, status) {
     return { name, date, status }
