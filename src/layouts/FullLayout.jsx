@@ -44,6 +44,11 @@ const FullLayout = props => {
     toggleDrawer();
   };
 
+  function handleClick(route) {
+    props.history.push(route);
+  }
+
+
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
       <AppBar position="static">
@@ -70,6 +75,7 @@ const FullLayout = props => {
               onClick={() => {
                 console.info("I'm a button.");
               }}
+              // onClick={() => handleClick("/signIn")}
             >
               Sign In
             </StyledLink>
@@ -78,6 +84,7 @@ const FullLayout = props => {
               onClick={() => {
                 console.info("I'm a button.");
               }}
+              onClick={() => handleClick("/signUp")}
             >
               Sign Up
             </StyledLink>

@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 import CreateChallenge from '../pages/CreateChallenge'
 import SignUp from '../pages/SignUpPage'
+import { DeviceSignalCellularConnectedNoInternet0Bar } from 'material-ui/svg-icons';
 /**
  * The Public Routes
  * These routes are being used for the drawer but one could create another array
@@ -55,5 +56,5 @@ export const publicRoutes = [
         name: 'Sign Up',
         icon: InfoIcon,
         component: SignUp,
-    }
+    },
 ]
