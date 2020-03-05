@@ -18,27 +18,4 @@ class Application extends React.Component {
             </div>
         );
     }
-};
 
-/*export default class Form extends Component{
-    constructor(props){
-      super(props){
-        this.state={
-          firstName:'',
-          lastName:''.
-          username:'',
-          email:'',
-          password:'',
-          confirmPassword:''
-        }
-      }
-    }
-}
-*/
-
-const SignUpPage = props => {
-    const [page, setPage] = React.useState(0);
-};
-
-
-export default SignUpPage;
