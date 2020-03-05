@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,12 +12,21 @@ import IndeterminateCheckBox from '@material-ui/icons/IndeterminateCheckBox';
 import CheckBoxOutlineBlankRoundedIcon from '@material-ui/icons/CheckBoxOutlineBlankRounded';
 import { TablePagination } from "@material-ui/core";
 import styled from "styled-components";
+import Grid from "@material-ui/core/Grid";
+
+
+const ParentContainer = styled.div`
+    background-color: #202538;
+    height: 100%;
+`
+
 
 const AvatarContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-direction: row;
     padding: 8px 0px 8px 8px;
+    
 `
 
 const StyledTableContainer = styled(TableContainer)`
@@ -29,6 +38,11 @@ const StyledTableContainer = styled(TableContainer)`
 
 const StyledTable = styled(Table)`
     max-width: 50%;
+    background-color: white;
+
+    th {
+        background-color: rgba(32, 37, 56, .6)
+    }
 `
 const StyledTablePagination = styled(TablePagination)`
     display: flex;
@@ -36,8 +50,14 @@ const StyledTablePagination = styled(TablePagination)`
     justify-content: center;
 `
 const StyledAvatar = styled(Avatar)`
-
+    height: 100px;
+    width: 100px;
 `
+const StyledGrid = styled(Grid)`
+    font-size: 33px;
+    padding: 0px 0px 0px 8px;
+`
+
 
 function getChallenges(name, date, status) {
     return { name, date, status }
@@ -55,6 +75,7 @@ const rows = [
 const Profile = props => {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [name, setName] = useState({ firstName: "Joe", lastName: "Schmoe"});
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -63,9 +84,11 @@ const Profile = props => {
         setPage(0);
     };
     return (
-        <div>
+        <ParentContainer>
             <AvatarContainer>
-                <Avatar alt="profile pic" src="" />
+                <StyledAvatar alt="profile pic" src="" />
+                <StyledGrid><h2>{name.firstName}</h2><h2>{name.lastName}</h2></StyledGrid>
+                
             </AvatarContainer>
             <StyledTableContainer>
                 <StyledTable stickyHeader aria-label="simple table">
@@ -101,7 +124,7 @@ const Profile = props => {
             
             
 
-        </div>
+        </ParentContainer>
     );
 }
 
