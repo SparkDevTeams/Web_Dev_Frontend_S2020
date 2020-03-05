@@ -5,6 +5,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
+import CreateChallenge from '../pages/CreateChallenge'
 /**
  * The Public Routes
  * These routes are being used for the drawer but one could create another array
@@ -34,16 +35,17 @@ export const publicRoutes = [
     },
     {
         key: 2,
-        path: '/viewChallenge',
-        name: 'View Challenge',
-        icon: InfoIcon,
-        component: null
-    },
-    {
-        key:3,
         path: '/profile',
         name: 'Profile',
         icon: InfoIcon,
         component: Profile,
+
     },
+    {
+        key: 3,
+        path: '/createChallenge',
+        name: 'Create Challenge',
+        icon: InfoIcon,
+        component: CreateChallenge,
+    }
 ]

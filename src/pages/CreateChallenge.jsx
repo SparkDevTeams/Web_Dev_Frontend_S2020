@@ -5,6 +5,16 @@ import Menuitem from '@material-ui/core/MenuItem'
 import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 
+const style = {
+  background: 'linear-gradient(45deg, #13e3e6 30%, #0f99d9 90%)',
+  borderRadius: 3,
+  border: 0,
+  color: 'white',
+  height: 48,
+  padding: '0 30px',
+  justify:"space-between",
+  fontSize: '33px'
+};
 
 const ParentContainer = styled.div`
   .root {
@@ -163,7 +173,6 @@ export default function CenteredGrid() {
                   defaultValue=""
                   style={{ width: 716 }}
                   variant="outlined"
-                  id="filled-required"
                   select
                   value={point}
                   onChange={handlePointChange}
@@ -178,14 +187,14 @@ export default function CenteredGrid() {
             </Grid>
             <Grid item xs={6}></Grid>
             <Grid item xs={3}>
-            <button  variant="contained" color="primary" style={{fontSize: "33px"}}>
+            <button  style={style}>
             <NavLink to="/home">
                 Cancel
               </NavLink>
             </button>
             </Grid>
             <Grid item xs={3}>
-              <button variant="contained" color="primary" style={{fontSize: "33px"}}>
+              <button style={style} >
               <NavLink to="/home">
                 Submit
               </NavLink>
