@@ -1,5 +1,4 @@
 import React from "react";
-
 import {Helmet} from "react-helmet";
 
 
@@ -8,10 +7,9 @@ export default function SignUpPage() {
              <div >
                 <Helmet>
                     <style>
-                        {'body{ background-color: red;}'}
+                        {'body{ background-color: #202538;}'}
                     </style>
                 </Helmet>
             </div>
     )
 }
-
