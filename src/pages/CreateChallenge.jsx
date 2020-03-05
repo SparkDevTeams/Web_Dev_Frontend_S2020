@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import styled from "styled-components";
 
 const style = {
-  background: 'linear-gradient(45deg, #13e3e6 30%, #0f99d9 90%)',
+  background: 'linear-gradient(45deg, #0f99d9 33%, #13e3e6 34%, #0f99d9 33%)',
   borderRadius: 3,
   border: 0,
   color: 'white',
