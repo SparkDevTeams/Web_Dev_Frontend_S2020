@@ -6,7 +6,9 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 import CreateChallenge from '../pages/CreateChallenge'
+import LogIn from '../pages/LogIn'
 import SignUp from '../pages/SignUpPage'
+import { DeviceSignalCellularConnectedNoInternet0Bar } from 'material-ui/svg-icons';
 /**
  * The Public Routes
  * These routes are being used for the drawer but one could create another array
@@ -32,7 +34,7 @@ export const publicRoutes = [
         path: '/login',
         name: 'Login',
         icon: LoginIcon,
-        component: null
+        component: LogIn
     },
     {
         key: 2,
@@ -55,5 +57,5 @@ export const publicRoutes = [
         name: 'Sign Up',
         icon: InfoIcon,
         component: SignUp,
-    }
+    },
 ]
