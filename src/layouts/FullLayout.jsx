@@ -75,7 +75,7 @@ const FullLayout = props => {
               onClick={() => {
                 console.info("I'm a button.");
               }}
-              // onClick={() => handleClick("/signIn")}
+              onClick={() => handleClick("/logIn")}
             >
               Sign In
             </StyledLink>
