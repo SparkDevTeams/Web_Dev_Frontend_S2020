@@ -6,7 +6,6 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import Home from '../pages/Home';
 import Profile from '../pages/Profile';
 import CreateChallenge from '../pages/CreateChallenge'
-import LogIn from '../pages/LogIn'
 import SignUp from '../pages/SignUpPage'
 import { DeviceSignalCellularConnectedNoInternet0Bar } from 'material-ui/svg-icons';
 import SignIn from '../pages/SignIn';
@@ -32,10 +31,10 @@ export const publicRoutes = [
     },
     {
         key: 1,
-        path: '/logIn',
-        name: 'Login',
+        path: '/signIn',
+        name: 'SignIn',
         icon: LoginIcon,
-        component: LogIn
+        component: SignIn
     },
     {
         key: 2,
