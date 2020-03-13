@@ -8,9 +8,9 @@ import axios from "axios";
 /**
  * Create an Axios Client with defaults
  */
-const client = axios.create({
-  baseUrl: "http://localhost:3009"
-});
+// const client = axios.create({
+//   baseUrl: "http://localhost:3009"
+// });
 
 const client = axios.create({});
 
