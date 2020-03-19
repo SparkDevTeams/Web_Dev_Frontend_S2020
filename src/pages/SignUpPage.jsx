@@ -13,14 +13,15 @@ import Container from "@material-ui/core/Container";
 import styled from "styled-components";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import * as yup from "yup";
+import request from "../utils/request";
 
 const ParentContainer = styled.div`
   background-color: #202538;
   height: 100%;
 `;
-const StyledTable = styled(Table)`
+const StyledTable = styled.div`
   max-width: 50%;
   background-color: white;
 
@@ -28,7 +29,7 @@ const StyledTable = styled(Table)`
     background-color: rgba(32, 37, 56, 0.6);
   }
 `;
-const StyledTableContainer = styled(TableContainer)`
+const StyledTableContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -82,7 +83,7 @@ const SignUp = props => {
     <ParentContainer>
       <StyledTableContainer>
         <StyledTable>
-          <Container component="main" maxWidth="xs">
+          <Container component="div" maxWidth="xs">
             <CssBaseline />
             <div className={classes.paper}>
               <Avatar className={classes.avatar}>
@@ -101,7 +102,17 @@ const SignUp = props => {
                 validationSchema={schema}
                 onSubmit={async (values, actions) => {
                   try {
-                    // const response = await request({});
+                    const response = await request({
+                      url: "http://localhost:3009/user/sign_up",
+                      method: "post",
+                      data: {
+                        email: values.email,
+                        password: values.password,
+                        firstname: values.firstname,
+                        lastname: values.lastname
+                      }
+                    });
+
                     console.log("we attempt to make a request with", values);
                   } catch (error) {
                     console.log(error);
@@ -109,13 +120,12 @@ const SignUp = props => {
                 }}
               >
                 {props => (
-                  <form className={classes.form} noValidate>
+                  <form className={classes.form} onSubmit={props.handleSubmit}>
                     <Grid container spacing={2}>
                       <Grid item xs={12} sm={6}>
                         <TextField
-                          autoComplete="fname"
-                          name="firstName"
                           variant="outlined"
+                          name="firstname"
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                           value={props.values.firstname}
@@ -134,10 +144,9 @@ const SignUp = props => {
                           onChange={props.handleChange}
                           onBlur={props.handleBlur}
                           value={props.values.lastname}
-                          id="lastName"
+                          id="lastname"
                           label="Last Name"
-                          name="lastName"
-                          autoComplete="lname"
+                          name="lastname"
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -151,7 +160,6 @@ const SignUp = props => {
                           id="email"
                           label="Email Address"
                           name="email"
-                          autoComplete="email"
                         />
                       </Grid>
                       <Grid item xs={12}>
@@ -166,7 +174,6 @@ const SignUp = props => {
                           value={props.values.password}
                           type="password"
                           id="password"
-                          autoComplete="current-password"
                         />
                       </Grid>
                     </Grid>
