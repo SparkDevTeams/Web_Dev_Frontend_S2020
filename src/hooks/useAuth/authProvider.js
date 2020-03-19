@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
     setContextValue(prevContext => {
       sessionStorage.setItem(
         "authState",
-        JSON.stringify({ ...prevContext, state })
+        JSON.stringify({ ...prevContext, ...state })
       );
       return { ...prevContext, state };
     });
