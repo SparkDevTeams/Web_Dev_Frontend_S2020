@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+const SignIn = props => {
   const classes = useStyles();
   const { login, authError, token } = useAuth();
 
@@ -69,6 +69,7 @@ export default function SignIn() {
             login(values);
             if (!!authError === false) {
               console.log("success login in");
+              props.history.push("/");
             } else {
               console.log("error login in");
             }
@@ -138,4 +139,6 @@ export default function SignIn() {
       <Box mt={8}></Box>
     </Container>
   );
-}
+};
+
+export default SignIn;
