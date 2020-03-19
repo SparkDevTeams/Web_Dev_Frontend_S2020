@@ -1,24 +1,16 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
+import { useAuth } from "../hooks";
 
-// const Home = props => {
+const Home = props => {
+  const { user, loggedIn } = useAuth();
 
-    
-//     return (
-//         <h1>Home Page Component</h1>
-//     )
-// }
-
-class Home extends React.Component {
-
-    componentDidMount(){
-        console.log('home component logged')
-    }
-
-    render(){
-        return (
-            <h1>Home Page Component</h1>
-        )
-    }
+  console.log(user, loggedIn);
+  return (
+    <div>
+      <h1>Home Page</h1>
+      {loggedIn ? <h2>{`Hi ${user.name}!`}</h2> : null}
+    </div>
+  );
 };
 
 export default Home;

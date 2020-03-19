@@ -12,6 +12,7 @@ import { publicRoutes } from "../routes/allRoutes";
 import styled from "styled-components";
 import { Route, Switch } from "react-router-dom";
 import Link from "@material-ui/core/Link";
+import { useAuth } from "../hooks";
 
 const Side = styled.div`
   width: 250;
@@ -36,6 +37,7 @@ const StyledLink = styled(Link)`
 
 const FullLayout = props => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { loggedIn } = useAuth();
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
@@ -47,7 +49,6 @@ const FullLayout = props => {
   function handleClick(route) {
     props.history.push(route);
   }
-
 
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
@@ -70,40 +71,70 @@ const FullLayout = props => {
             >
               Explore
             </StyledLink>
-            <StyledLink
-              component="button"
-              onClick={() => {
-                console.info("I'm a button.");
-              }}
-              onClick={() => handleClick("/logIn")}
-            >
-              Sign In
-            </StyledLink>
-            <StyledLink
-              component="button"
-              onClick={() => {
-                console.info("I'm a button.");
-              }}
-              onClick={() => handleClick("/signUp")}
-            >
-              Sign Up
-            </StyledLink>
+            {!loggedIn && (
+              <StyledLink
+                component="button"
+                onClick={() => {
+                  console.info("I'm a button.");
+                }}
+                onClick={() => handleClick("/logIn")}
+              >
+                Sign In
+              </StyledLink>
+            )}
+            {!loggedIn && (
+              <StyledLink
+                component="button"
+                onClick={() => {
+                  console.info("I'm a button.");
+                }}
+                onClick={() => handleClick("/signUp")}
+              >
+                Sign Up
+              </StyledLink>
+            )}
           </div>
         </StyledToolbar>
       </AppBar>
       <Drawer open={drawerOpen} onClose={toggleDrawer}>
         <Side>
           <List component="nav">
-            {publicRoutes.map(route => (
-              <ListItem
-                button
-                onClick={() => switchRoutes(route.path)}
-                key={route.key}
-              >
-                <ListItemIcon>{<route.icon color="primary" />}</ListItemIcon>
-                <ListItemText primary={route.name} />
-              </ListItem>
-            ))}
+            {publicRoutes.map(route => {
+              if (route.authReq) {
+                if (loggedIn) {
+                  return (
+                    <ListItem
+                      button
+                      onClick={() => switchRoutes(route.path)}
+                      key={route.key}
+                    >
+                      <ListItemIcon>
+                        {<route.icon color="primary" />}
+                      </ListItemIcon>
+                      <ListItemText primary={route.name} />
+                    </ListItem>
+                  );
+                } else {
+                  return null;
+                }
+              }
+              if (
+                loggedIn &&
+                (route.name === "Login" || route.name === "Sign Up")
+              ) {
+                return null;
+              }
+              return (
+                <ListItem
+                  button
+                  onClick={() => switchRoutes(route.path)}
+                  key={route.key}
+                >
+                  <ListItemIcon>{<route.icon color="primary" />}</ListItemIcon>
+                  <ListItemText primary={route.name} />
+                </ListItem>
+              );
+            })}
           </List>
         </Side>
       </Drawer>

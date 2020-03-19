@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Theme from "./Theme";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { AuthProvider } from "./hooks";
 
 function App() {
   return (

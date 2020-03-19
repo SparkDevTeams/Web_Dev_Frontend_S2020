@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import { Formik } from "formik";
 import * as yup from "yup";
 import request from "../utils/request";
+import { useAuth } from "../hooks";
 
 let schema = yup.object().shape({
   email: yup
@@ -44,8 +45,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function SignIn() {
+const SignIn = props => {
   const classes = useStyles();
+  const { login, authError, token } = useAuth();
 
   return (
     <Container component="main" maxWidth="xs">
@@ -64,21 +66,12 @@ export default function SignIn() {
           }}
           validationSchema={schema}
           onSubmit={async (values, actions) => {
-            try {
-              const response = await request({
-                url: "http://localhost:3009/user/sign_in",
-                method: "post",
-                data: {
-                  email: values.email,
-                  password: values.password
-                }
-              });
-              console.log(response);
-              const stringifiedResponse = JSON.stringify(response.data);
-              sessionStorage.setItem("user", stringifiedResponse);
-              sessionStorage.setItem("token", response.token);
-            } catch (error) {
-              console.log(error);
+            login(values);
+            if (!!authError === false) {
+              console.log("success login in");
+              props.history.push("/");
+            } else {
+              console.log("error login in");
             }
           }}
         >
@@ -146,4 +139,6 @@ export default function SignIn() {
       <Box mt={8}></Box>
     </Container>
   );
-}
+};
+
+export default SignIn;
