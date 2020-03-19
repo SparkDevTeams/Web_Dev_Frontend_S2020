@@ -27,6 +27,7 @@ export const publicRoutes = [
     key: 0,
     path: "/",
     name: "Home",
+    authReq: false,
     icon: HomeIcon,
     component: Home
   },
@@ -34,6 +35,7 @@ export const publicRoutes = [
     key: 1,
     path: "/logIn",
     name: "Login",
+    authReq: false,
     icon: LoginIcon,
     component: LogIn
   },
@@ -41,6 +43,7 @@ export const publicRoutes = [
     key: 2,
     path: "/profile",
     name: "Profile",
+    authReq: true,
     icon: InfoIcon,
     component: Profile
   },
@@ -48,6 +51,7 @@ export const publicRoutes = [
     key: 3,
     path: "/createChallenge",
     name: "Create Challenge",
+    authReq: true,
     icon: InfoIcon,
     component: CreateChallenge
   },
@@ -55,6 +59,7 @@ export const publicRoutes = [
     key: 4,
     path: "/signUp",
     name: "Sign Up",
+    authReq: false,
     icon: InfoIcon,
     component: SignUp
   }
