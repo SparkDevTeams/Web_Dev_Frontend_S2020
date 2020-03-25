@@ -1,15 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import { AuthProvider } from "./hooks";
+import { AuthProvider, ChallengeProvider } from "./hooks";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 const Root = prop => {
   return (
     <AuthProvider>
-      <Router>
-        <App />
-      </Router>
+      <ChallengeProvider>
+        <Router>
+          <App />
+        </Router>
+      </ChallengeProvider>
     </AuthProvider>
   );
 };
