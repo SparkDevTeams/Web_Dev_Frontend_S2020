@@ -33,6 +33,7 @@ const useAuth = () => {
         }
       });
     } catch (error) {
+      console.log(error);
       dispatch({
         type: "error",
         payload: {
