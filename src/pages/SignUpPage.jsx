@@ -114,6 +114,7 @@ const SignUp = props => {
                     });
 
                     console.log("we attempt to make a request with", values);
+                    props.history.push("/");
                   } catch (error) {
                     console.log(error);
                   }
