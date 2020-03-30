@@ -38,3 +38,5 @@ const ChallengeProvider = ({ children }) => {
     </ChallengeContext.Provider>
   );
 };
+
+export default ChallengeProvider;

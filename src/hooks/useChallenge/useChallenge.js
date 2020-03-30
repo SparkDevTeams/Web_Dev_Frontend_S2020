@@ -21,14 +21,17 @@ const useChallenge = () => {
           challenge: response.challenge
         }
       });
+
+      return response.challenge;
     } catch (error) {
       console.log(error);
       dispatch({
         type: "err",
         payload: {
-          error
+          error: "Error creating challenge."
         }
       });
+      return false;
     }
   };
 
@@ -51,7 +54,8 @@ const useChallenge = () => {
     queryChallenges: queryChallenges,
     updateChallenges: updateChallenges,
     challenges: state.challenges,
-    challengesOfInterest: state.challengesOfInterest
+    challengesOfInterest: state.challengesOfInterest,
+    challengeError: state.error
   };
 };
 

@@ -81,7 +81,8 @@ const points = [
 const CreateChallenge = () => {
   const [category, setCategory] = useState(""); //Or React.useState();
   const [point, setPoint] = useState("");
-  const { postChallenge } = useChallenge();
+  const [successPosting, setSuccessPosting] = useState(false);
+  const { postChallenge, challengeError } = useChallenge();
 
   const handleCategoryChange = event => {
     setCategory(event.target.value);
@@ -109,11 +110,25 @@ const CreateChallenge = () => {
             }}
             onSubmit={async (values, actions) => {
               console.log(values);
-              postChallenge(values);
+              const response = postChallenge(values);
+              if (response !== false) {
+                setSuccessPosting(true);
+                actions.resetForm({});
+                actions.setStatus({ success: true });
+              } else {
+                actions.setStatus({ success: false });
+                actions.setSubmitting(false);
+                actions.setErrors({ submit: challengeError });
+              }
             }}
           >
             {props => (
               <form onSubmit={props.handleSubmit}>
+                {successPosting && (
+                  <Grid item xs={24}>
+                    Success Creating Challenge
+                  </Grid>
+                )}
                 <Grid item xs={3}>
                   <span vertical-align="middle" style={{ fontSize: "33px" }}>
                     Title:{" "}

@@ -18,7 +18,8 @@ import produce from "immer";
 
 export const initialState = {
   challenges: [],
-  challengesOfInterest: []
+  challengesOfInterest: [],
+  error: ""
 };
 
 export const challengeReducer = (state, action) => {
@@ -73,6 +74,11 @@ export const challengeReducer = (state, action) => {
         );
         filteredChallenges.push(action.payload.challenge);
         draft.challenges = filteredChallenges;
+      });
+
+    case "err":
+      return produce(state, draft => {
+        draft.error = action.payload.error;
       });
 
     default:
