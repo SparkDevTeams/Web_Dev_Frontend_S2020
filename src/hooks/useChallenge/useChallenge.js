@@ -7,13 +7,15 @@ const useChallenge = () => {
 
   const postChallenge = async challenge => {
     try {
-      const response = request({
+      const response = await request({
         url: "http://localhost:3009/challenges",
         method: "post",
         data: {
           challenge: challenge
         }
       });
+
+      console.log(response);
 
       dispatch({
         type: "addChallenge",
@@ -35,6 +37,31 @@ const useChallenge = () => {
     }
   };
 
+  const getChallenges = async () => {
+    try {
+      const response = await request({
+        url: "http://localhost:3009/challenges",
+        method: "get"
+      });
+
+      dispatch({
+        type: "getChallenges",
+        payload: {
+          challenges: response.data
+        }
+      });
+      return response.data;
+    } catch (e) {
+      dispatch({
+        type: "err",
+        payload: {
+          error: "Error fetching all challenges."
+        }
+      });
+      return false;
+    }
+  };
+
   const deleteChallenge = id => {};
 
   const queryChallenges = query => {
@@ -50,6 +77,7 @@ const useChallenge = () => {
 
   return {
     postChallenge,
+    getChallenges,
     deleteChallenge: deleteChallenge,
     queryChallenges: queryChallenges,
     updateChallenges: updateChallenges,

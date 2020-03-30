@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useAuth } from "../hooks";
+import { useAuth, useChallenge } from "../hooks";
 import { makeStyles, Grid, TextField } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 
@@ -41,7 +41,12 @@ const useStyles = makeStyles(theme => {
 
 const Home = props => {
   const { user, loggedIn } = useAuth();
+  const { getChallenges } = useChallenge();
   const classess = useStyles();
+
+  useEffect(() => {
+    getChallenges();
+  }, []);
 
   return (
     <div className={classess.root}>

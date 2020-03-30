@@ -36,6 +36,10 @@ export const challengeReducer = (state, action) => {
           challenge => challenge._id !== action.payload.id
         );
       });
+    case "getChallenges":
+      return produce(state, draft => {
+        draft.challenges = action.payload.challenges;
+      });
     case "addChallenge":
       return produce(state, draft => {
         // {
