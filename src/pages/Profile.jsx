@@ -13,10 +13,11 @@ import CheckBoxOutlineBlankRoundedIcon from "@material-ui/icons/CheckBoxOutlineB
 import { TablePagination } from "@material-ui/core";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
+import { useAuth } from "../hooks";
 
 const ParentContainer = styled.div`
   background-color: #202538;
-  height: 100%;
+  height: 100vh;
 `;
 
 const AvatarContainer = styled.div`
@@ -29,6 +30,7 @@ const AvatarContainer = styled.div`
 const StyledTableContainer = styled(TableContainer)`
   display: flex;
   flex-direction: row;
+
   justify-content: center;
   top-margin: 15px;
 `;
@@ -49,10 +51,12 @@ const StyledTablePagination = styled(TablePagination)`
 const StyledAvatar = styled(Avatar)`
   height: 100px;
   width: 100px;
+  margin: 15px 5px 0px 15px;
 `;
 const StyledGrid = styled(Grid)`
   font-size: 33px;
-  padding: 0px 0px 0px 8px;
+  padding: 0px 0px 0px 16px;
+  color: #f9f9f9;
 `;
 
 function getChallenges(name, date, status) {
@@ -94,10 +98,10 @@ const rows = [
 ];
 
 const Profile = props => {
+  const { user } = useAuth();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [userInfo, setUserInfo] = React.useState({});
-  const [name, setName] = useState({ firstName: "Joe", lastName: "Schmoe" });
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -106,21 +110,12 @@ const Profile = props => {
     setPage(0);
   };
 
-  useEffect(() => {
-    console.log("The component mounted");
-    try {
-      const userInStorage = JSON.parse(sessionStorage.getItem("user"));
-      setUserInfo(userInStorage);
-    } catch (error) {
-      console.log(error, "user is probably not logged in");
-    }
-  }, []);
   return (
     <ParentContainer>
       <AvatarContainer>
         <StyledAvatar alt="profile pic" src="" />
         <StyledGrid>
-          <h2>{userInfo.name || `${name.firstName} ${name.lastName}`}</h2>
+          <h2>{user.name}</h2>
         </StyledGrid>
       </AvatarContainer>
       <StyledTableContainer>
