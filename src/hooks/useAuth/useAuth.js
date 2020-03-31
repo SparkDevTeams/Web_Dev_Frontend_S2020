@@ -44,6 +44,8 @@ const useAuth = () => {
   };
 
   const logout = () => {
+    sessionStorage.clear();
+
     dispatch({
       type: "logout"
     });

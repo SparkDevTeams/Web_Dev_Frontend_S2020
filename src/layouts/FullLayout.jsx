@@ -37,7 +37,7 @@ const StyledLink = styled(Link)`
 
 const FullLayout = props => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const { loggedIn } = useAuth();
+  const { loggedIn, logout } = useAuth();
 
   const toggleDrawer = () => setDrawerOpen(!drawerOpen);
 
@@ -49,6 +49,13 @@ const FullLayout = props => {
   function handleClick(route) {
     props.history.push(route);
   }
+
+  const handleLogout = () => {
+    // erase the user from auth context
+    logout();
+    // redirect user to home page
+    props.history.push("/");
+  };
 
   return (
     <div style={{ minHeight: "100vh", position: "relative" }}>
@@ -63,14 +70,24 @@ const FullLayout = props => {
             <MenuIcon />
           </IconButton>
           <div className="buttonsOnRight">
-            <StyledLink
+            {/* <StyledLink
               component="button"
               onClick={() => {
                 console.info("I'm a button.");
               }}
             >
               Explore
-            </StyledLink>
+            </StyledLink> */}
+            {loggedIn && (
+              <StyledLink
+                component="button"
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Log Out
+              </StyledLink>
+            )}
             {!loggedIn && (
               <StyledLink
                 component="button"
