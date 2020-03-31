@@ -59,9 +59,11 @@ export const challengeReducer = (state, action) => {
         //         query: "growth"
         //     }
         // }
-        draft.challengesOfInterest = draft.challenges.filter(challenge =>
-          challenge.description.includes(action.payload.query)
-        );
+        draft.challengesOfInterest = draft.challenges.filter(challenge => {
+          const normalizedChallenge = challenge.description.toLowerCase();
+          const normalizedQuery = action.payload.query.toLowerCase();
+          return normalizedChallenge.includes(normalizedQuery);
+        });
       });
 
     case "updateChallenges":

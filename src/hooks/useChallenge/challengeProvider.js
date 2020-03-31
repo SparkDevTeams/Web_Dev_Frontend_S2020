@@ -8,6 +8,9 @@ import { initialState, challengeReducer } from "./challengeReducer";
 export const ChallengeContext = createContext({});
 const sessionState = JSON.parse(sessionStorage.getItem("challengeState"));
 
+// necessary so that on refresh it gets reset
+sessionState.challengesOfInterest = [];
+
 /**
  * ChallengeProvider is a react component that provides the Global Store of Challenge Business Logiv
  * to all its children, meaning anyone who needs it.
