@@ -5,14 +5,14 @@ import request from "../../utils/request";
 const useChallenge = () => {
   const { state, dispatch } = useContext(ChallengeContext);
 
-  const postChallenge = async challenge => {
+  const postChallenge = async (challenge) => {
     try {
       const response = await request({
         url: "http://localhost:3009/challenges",
         method: "post",
         data: {
-          challenge: challenge
-        }
+          challenge: challenge,
+        },
       });
 
       console.log(response);
@@ -20,8 +20,8 @@ const useChallenge = () => {
       dispatch({
         type: "addChallenge",
         payload: {
-          challenge: response.challenge
-        }
+          challenge: response.challenge,
+        },
       });
 
       return response.challenge;
@@ -30,8 +30,8 @@ const useChallenge = () => {
       dispatch({
         type: "err",
         payload: {
-          error: "Error creating challenge."
-        }
+          error: "Error creating challenge.",
+        },
       });
       return false;
     }
@@ -41,39 +41,41 @@ const useChallenge = () => {
     try {
       const response = await request({
         url: "http://localhost:3009/challenges",
-        method: "get"
+        method: "get",
       });
 
       dispatch({
         type: "getChallenges",
         payload: {
-          challenges: response.data
-        }
+          challenges: response.data,
+        },
       });
       return response.data;
     } catch (e) {
       dispatch({
         type: "err",
         payload: {
-          error: "Error fetching all challenges."
-        }
+          error: "Error fetching all challenges.",
+        },
       });
       return false;
     }
   };
 
-  const deleteChallenge = id => {};
+  const deleteChallenge = (id) => {};
 
-  const queryChallenges = query => {
-    dispatch({
-      type: "queryChallenges",
-      payload: {
-        query: query
-      }
-    });
+  const queryChallenges = (query) => {
+    if (query && query.length > 0) {
+      dispatch({
+        type: "queryChallenges",
+        payload: {
+          query: query,
+        },
+      });
+    }
   };
 
-  const updateChallenges = challenge => {};
+  const updateChallenges = (challenge) => {};
 
   return {
     postChallenge,
@@ -83,7 +85,7 @@ const useChallenge = () => {
     updateChallenges: updateChallenges,
     challenges: state.challenges,
     challengesOfInterest: state.challengesOfInterest,
-    challengeError: state.error
+    challengeError: state.error,
   };
 };
 

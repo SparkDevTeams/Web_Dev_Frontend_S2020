@@ -9,7 +9,9 @@ export const ChallengeContext = createContext({});
 const sessionState = JSON.parse(sessionStorage.getItem("challengeState"));
 
 // necessary so that on refresh it gets reset
-sessionState.challengesOfInterest = [];
+if (sessionState && sessionState !== null) {
+  sessionState.challengesOfInterest = [];
+}
 
 /**
  * ChallengeProvider is a react component that provides the Global Store of Challenge Business Logiv
@@ -26,7 +28,7 @@ const ChallengeProvider = ({ children }) => {
   const [contextValue, setContextValue] = useState({ state, dispatch });
 
   useEffect(() => {
-    setContextValue(prevContext => {
+    setContextValue((prevContext) => {
       sessionStorage.setItem(
         "challengeState",
         JSON.stringify({ ...prevContext, ...state })
